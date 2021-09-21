@@ -17,7 +17,7 @@ class Project(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
     description = models.TextField()
-    pic = models.FilePathField(path="/img")
+    image = models.OneToOneField('Image', on_delete=models.SET_NULL, blank=True, null=True)
     technologies = models.ManyToManyField(Technology, help_text="Select framework/technologies used for the project")
 
     def __str__(self):
@@ -30,7 +30,7 @@ class Project(models.Model):
 
     def display_technology(self):
         """Create a string for the Technology used. This is required to display technology in Admin."""
-        return ', '.join(technology.name for technology in self.technology.all()[:3])
+        return ', '.join(technology.name for technology in self.technologies.all()[:3])
 
     display_technology.short_description = 'Technology'
 
