@@ -8,6 +8,6 @@ urlpatterns = [
     path('upload/', views.image_upload_view),
     path('gallery/', HomePageView.as_view(), name='home'),
     path('search/', views.search_results, name='search_results'),
-    path("/gallery/<int:pk>/", views.image_detail, name="image_detail"),
+    path("gallery/<int:pk>/", views.image_detail, name="image_detail"),
     path("gallery/", views.image_index, name="image_index"),
 ]
