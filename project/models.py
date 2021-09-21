@@ -1,5 +1,16 @@
+import uuid
+
 from django.db import models
 from django.urls import reverse  # Used to generate URLs by reversing the URL patterns
+
+
+class Technology(models.Model):
+    """Model representing a project technology."""
+    name = models.CharField(max_length=100, help_text='Enter a project framework/technology used (e.g. Django)')
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.name
 
 
 class Project(models.Model):
@@ -7,7 +18,7 @@ class Project(models.Model):
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
     description = models.TextField()
     pic = models.FilePathField(path="/img")
-    technology = models.ManyToManyField(Technology, help_text='Select tech used for this project')
+    technologies = models.ManyToManyField(Technology, help_text="Select framework/technologies used for the project")
 
     def __str__(self):
         """String for representing the Model object."""
@@ -15,7 +26,7 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('project-detail', args=[str(self.id)])
 
     def display_technology(self):
         """Create a string for the Technology used. This is required to display technology in Admin."""
@@ -61,7 +72,6 @@ class Detail(models.Model):
     )
 
     status = models.IntegerField(
-        max_length=1,
         choices=RATING_STATUS,
         blank=True,
         default='5',
