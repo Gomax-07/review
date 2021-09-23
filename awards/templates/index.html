@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repo_image</title>
+</head>
+<body>
+    <form class="form-control" method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    <style>
+        .form-control{
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.24));
+        }
+    </style>
+</body>
+</html>

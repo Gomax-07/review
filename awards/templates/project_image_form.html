@@ -1,0 +1,45 @@
+{% load crispy_forms_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repo_image</title>
+</head>
+<body>
+    <form  method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Upload</button>
+    </form>
+   <style>
+       *{
+           padding: 0;
+           box-sizing: border-box;
+           margin: 0;
+
+
+       }
+       body{
+            background: linear-gradient(45deg, rgba(12, 175, 19, 0.68), #18cb18);
+       }
+        form{
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.24));
+            height: 100vh;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            border-left: black;
+        }
+        button{
+            padding: 10px 25px;
+            margin: 5px;
+            border-radius: 25px;
+           background: linear-gradient(to right, rgba(0, 0, 0, 0.61), rgba(22, 134, 34, 0.71));
+            color: antiquewhite;
+            font-size: 20px;
+
+
+        }
+    </style>
+</body>
+</html>

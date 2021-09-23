@@ -1,0 +1,110 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Repositories</title>
+</head>
+<body>
+<section>
+    <h1>Repositories</h1>
+    <div class="row">
+    {% for project in project_images %}
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <img class="card-img-bottom" src="{% static project.pic %}" alt="project_images">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    <a href="{% url 'project_detail' project.pk %}"
+                       class="btn btn-primary">
+                        Read More
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    </div>
+    <div class='pattern'>
+       <div class="face face1"></div>
+       <div class="face face2"></div>
+    </div>
+</section>
+    <style>
+     *{
+         margin: 0;
+         padding: 0;
+     }
+     section{
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100vh;
+         overflow: hidden;
+     }
+     .pattern{
+         position: relative;
+         transform-style: preserve-3d;
+         perspective: 1000px;
+         animation: animateBg 10s ease-in-out infinite;
+         z-index: -2;
+     }
+     @keyframes animateBg{
+         0%,100%{
+             transform: scale(1.6) rotate(-15deg);
+         }
+          50%{
+             transform: scale(1.6) rotate(15deg);
+         }
+     }
+     .pattern .face{
+          position: relative;
+          width: 100%;
+          height: 107vh;
+          background: url("https://cdn.dribbble.com/users/74401/screenshots/15695565/media/df38caa2b7658f6e55c282457eef1e33.png?compress=1&resize=1200x900");
+          background-size: 100px 100px;
+         animation: animate 1s linear infinite;
+     }
+     @keyframes animate {
+        0%{
+            background-position: 0;
+        }
+           100%{
+            background-position: 100px;
+        }
+     }
+     .pattern .face.face2{
+         height: 100vh;
+         transform-origin: top;
+         transform: rotateX(70deg);
+     }
+     .pattern .face1::before{
+         content: "";
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         width: 100%;
+         height: 125px;
+         background: linear-gradient(0deg,rgba(0,0,0,0.5), transparent);
+     }
+      .pattern .face2::before{
+         content: "";
+         position: absolute;
+         bottom: top;
+         left: 0;
+         width: 100%;
+         height: 125px;
+         background: linear-gradient(180deg,rgba(0,0,0,0.5), transparent);
+     }
+
+ </style>
+</body>
+</html>
