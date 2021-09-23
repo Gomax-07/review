@@ -1,16 +1,109 @@
-<!--users/templates/users/dashboard.html-->
-
 {% extends 'base1.html' %}
 
 {% block content %}
-Hello, {{ user.username|default:'Guest' }}!
+    <main>
 
+        <section class="glass">
+            <div class="sidebar">
+  <a class="active" href="#home">Home</a>
+  <a href="{% url  'project_index' %}">Posts</a>
+  <a href="{% url  'project_index' %}">Images</a>
+  <a href="{% url  'home_view' %}">Image-Upload</a>
+</div>
+
+            Hello, {{ user.username|default:'Guest' }}!
+        </section>
+
+
+    </main>
+   <div class="circle1"></div>
+   <div class="circle2"></div>
 <div>
     {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'logout' %}">Logout</a><br>
         <a href="{% url 'password_change' %}">Change password</a>
     {% else %}
         <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </div>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    main{
+        min-height: 100vh;
+        background: linear-gradient(to right top,#65dfc9,#6cdbeb);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .glass{
+       background: white;
+       min-height: 90vh;
+       width:75%;
+       background: linear-gradient(to right bottom,rgba(255, 255, 255, 0.7),rgba(255,255,255,0.3));
+       border-radius: 2rem;
+       z-index: 2;
+       backdrop-filter: blur(2rem);
+          display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .circle1,.circle2{
+        background: white;
+        background: linear-gradient(to right bottom,rgba(255,255,255,0.8),rgba(255,255,255,0.3));
+        height: 15rem;
+        width:15rem;
+        position:absolute;
+        border-radius: 50%;
+
+    }
+
+    .circle1{
+        top:5%;
+        right:-4%;
+
+    }
+
+    .circle2{
+    bottom:-10%;
+    left:-2%;
+}
+
+    .sidebar{
+         height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right top, #66c256, #4fa34c);
+  overflow-x: hidden;
+  padding-top: 16px;
+    }
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #65dfc9;
+  display: block;
+}
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+    /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+</style>
 {% endblock %}
