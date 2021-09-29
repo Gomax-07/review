@@ -5,14 +5,14 @@
 Macharia John
 
 ## DESCRIPTION
-This is an application that enables the user to preview posts and locations of various individuals.
+This is an application that enables the user to preview posts and repo of various individuals.
 
 ## SETUP & INSTALLATION 
 TO access this project on your local files, you can clone it using these steps:
 
 1. Open your Terminal
 2. Clone the respository 
-       $ git clone(https://github.com/Gomax-07/neighbor.git)
+       $ git clone(https://github.com/Gomax-07/review.git)
 
 3. This will clone the respository into your local folder
 4. Pip install django
